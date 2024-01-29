@@ -11,20 +11,25 @@
 <div class="instructions">
     <h1>Number Guessing Game <span>by christian</span></h1>
     <h2>Instructions</h2>
-    <p>guess the number between 1 and 10.</p>
+    <p>guess the number ranging from 0 to 10.</p>
     <p>you only have 3 tries, so be careful!</p>
-    <h2 id="lives">Lives:</h2>
+    <h2 id="livesText">Lives:</h2>
 </div>  
 
 <div class="guess-container">
-    <h3>Enter your guess below</h3>
+    <h3 id="invalidGuess">Enter your guess below</h3>
     <input type="number" name="guess" id="guessInput" placeholder="E. g. 3">
     <input type="button" value="Submit" id="guessSubmit">
 </div>
 
 <div class="history-container">
     <h3>Previous Guesses</h3>
-    <p id="previousGuesses">you guessed 4</p>
+    <p id="previousGuessesText">you guessed 4</p>
+</div>
+
+<div id="endScreen">
+<h1 id="endText">the number was x, you guessed correctly!</h1>
+
 </div>
 
 <input type="button" value="Play again?" id="playAgainBtn">
