@@ -70,7 +70,7 @@ function checkGuess() {
 
 
 
-
+//function to subtract lives from player
 function subtractLife () {
 
     lives = lives - 1
@@ -84,21 +84,30 @@ function subtractLife () {
     }
 }
 
+//function to check player lives
 function checkLives () {
     if (lives === 0) {
         endScreen.style.display = 'flex'
         endText.innerText = `You ran out of lives... the number was ${number}, try again!`
         consecutiveLoss = consecutiveLoss + 1
         playAgainBtn.style.display = 'flex'
+        consecutiveLosses()
+    
     } 
 }
-
-
-// function consecutiveLosses () {
-
-// }
-
-
+//easter egg code, I dabble in the arts of trolling...
+function consecutiveLosses () {
+    if (consecutiveLoss === 3) {
+        endScreen.style.display = 'flex'
+        endText.innerText = `3 L's in a row... the number was ${number}, 4th times a charm! try again.`
+    } else if (consecutiveLoss > 3 && consecutiveLoss < 5) {
+        endScreen.style.display = 'flex'
+        endText.innerText = `4th time was NOT the charm 💀... the number was ${number}, try again... `
+    } else if (consecutiveLoss >= 5) {
+        endScreen.style.display = 'flex'
+        endText.innerText = `${consecutiveLoss} L's in a row is WILD 💀💀💀... the number was ${number}, try again... `
+    }
+}
 
 //array of guessed numbers to let player know if repeat guesses
 let previousGuesses = []
