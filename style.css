@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+
+body {
+    background-color: #282828;
+    color: white;
+    display: flex;
+    height: auto;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+    width: 100vw;
+    text-align: center;
+    padding-bottom: 4px;
+    
+}
+
+h2, h3 {
+    display: flex;
+    align-self: flex-start;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0 0 0 10px;
+
+}
+
+#lives {
+    display: flex;
+    align-self: flex-start;
+    position: absolute;
+    right: 35%;
+    top: 15%;
+}
+
+p {
+    display: flex; 
+    align-self: flex-start;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 1.5px 0 0 10px;
+    opacity: 0.5;
+
+}
+
+span {
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.guess-container {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid red;
+    height: auto;
+    width: 98%;
+    margin: 20px 0 0 0;
+
+
+}
+
+#guessInput {
+    height: 35px;
+    width: 95%;
+    margin: 10px 0 0 0px;
+    border-radius: 5px;
+    border: none;
+    
+}
+
+#guessSubmit {
+    height: 40px;
+    width: 98%;
+    margin: 10px 0 0 0px;
+    border-radius: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    background-color: #0A5C36;
+    border: none;
+    color: white;
+    
+}
+
+.history-container {
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    width: 98%;
+
+    margin: 10px 0 0 0;
+    border: 1px solid red;
+}
+
+
+#previousGuesses {
+    color: #0A5C36;
+    opacity: 1;
+    font-size: 25px;
+}
+
+#playAgainBtn {
+    position: absolute;
+    bottom: 2%;
+    color: white;
+    border-radius: 3px;
+    background-color: #0A5C36;
+    border: none;
+    height: 30px;
+    width: 20%;
+    text-align: center;
+    
+    
+    
+}
+
