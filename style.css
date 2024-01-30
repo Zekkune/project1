@@ -141,6 +141,35 @@ span {
     
 }
 
+#startScreen {
+    height: 100%;
+    width: 100vw;
+    background-color: #282828;
+    font-family: 'Honk', system-ui;
+    text-align: center;
+    display: block;
+    align-self: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    border: none;
+}
+
+#startText {
+    margin: 150px 0 25px 0;
+    border: none;
+}
+
+#easyButton, #medButton, #hardButton {
+    height: 40px;
+    width: 30%;
+    background-color: hotpink;
+    border: 1px solid #ffc922;
+    border-radius: 5px;
+    color: black;
+}
+
 #endScreen {
     height: 100%;
     width: 100vw;
