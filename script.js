@@ -9,11 +9,16 @@ const endText = document.querySelector('#endText')
 const livesText = document.querySelector('#livesText')
 const inputBar = document.querySelector('#guessInput')
 
+
 let consecutiveLoss = 0
 
 
 
 //game logic
+
+//array of guessed numbers to let player know if repeat guesses
+let previousGuesses = []
+
 
 
 
@@ -29,10 +34,11 @@ let number = randomNumber()
 console.log(number)
 
 //checks the guess value and displays a hint
-function checkGuess() {
+function checkGuess () {
 
     let guessInput = document.querySelector('#guessInput').value
     let guess = parseInt(guessInput, 10);
+    
     if (guess > 10 || guess < 0) {
         //number is too big or small
         invalidGuess.innerText = 'pick a number from 0 to 10!'
@@ -59,13 +65,7 @@ function checkGuess() {
         //player guess was too low
         invalidGuess.innerText = 'your guess was way too low! guess again with a much larger number 😎👍'
         subtractLife()
-    } else {
-          for (let i = 0; i > previousGuesses.length; i++) {
-            if (guess === previousGuesses[i]) {
-                invalidGuess.innerText = 'you guessed that number already, pick another'
-            }
-        }
-    }
+    } 
 }
 
 
@@ -105,25 +105,25 @@ function consecutiveLosses () {
         endText.innerText = `4th time was NOT the charm 💀... the number was ${number}, try again... `
     } else if (consecutiveLoss >= 5) {
         endScreen.style.display = 'flex'
+        endText.style.fontSize = '25px'
         endText.innerText = `${consecutiveLoss} L's in a row is WILD 💀💀💀... the number was ${number}, try again... `
     }
 }
 
-//array of guessed numbers to let player know if repeat guesses
-let previousGuesses = []
+
 
 
 
 guessSubmit.addEventListener('click', () => {
-    
+
     console.log(`this many lives: ${lives}`)
 
     //gets player guess and converts it to a number 
     let guessInput = document.querySelector('#guessInput').value
-    
     let guess = parseInt(guessInput, 10);
         
     previousGuesses.push(guess)
+    previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`
     console.log(`previous guesses: ${previousGuesses}`)
     
 
@@ -143,6 +143,7 @@ playAgainBtn.addEventListener('click', () => {
     invalidGuess.innerText = 'Enter your guess below'
     console.log(number)
     console.log(`this many losses in a row: ${consecutiveLoss}`)
+    previousGuesses = []
 
 })
 
