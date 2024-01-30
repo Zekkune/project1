@@ -144,7 +144,11 @@ playAgainBtn.addEventListener('click', () => {
     console.log(number)
     console.log(`this many losses in a row: ${consecutiveLoss}`)
     previousGuesses = []
+    previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`
+
+    
 
 })
+
 
 
