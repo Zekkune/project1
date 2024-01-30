@@ -2,6 +2,7 @@
 
 this project will be a simple number guessing game made with HTML, CSS, and vanilla JavaScript.
 
+###Wireframe
 <img src="NGG.png">
 
 ## Sources
