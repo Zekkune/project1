@@ -158,6 +158,10 @@ span {
     border: 1px solid #ffc922;
     border-radius: 5px;
     color: black;
+    font-family: 'Honk', system-ui;
+    font-size: 2rem;
+    text-align: center;
+
 }
 
 #endScreen {

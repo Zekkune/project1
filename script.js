@@ -40,7 +40,6 @@ easyButton.addEventListener('click', () => {
     startScreen.style.display = 'none'
     livesText.innerText = `you only have ${lives} tries, so be careful!`
     instructionsText.innerText = `guess the number ranging from 0 to 10.`
-    console.log(number)
 })
 medButton.addEventListener('click', () => {
     difficulty = 'medium'
@@ -50,7 +49,6 @@ medButton.addEventListener('click', () => {
     startScreen.style.display = 'none'
     livesText.innerText = `you only have ${lives} tries, so be careful!`
     instructionsText.innerText = 'guess the number ranging from 0 to 100.'
-    console.log(number)
 })
 hardButton.addEventListener('click', () => {
     difficulty = 'hard'
@@ -60,7 +58,6 @@ hardButton.addEventListener('click', () => {
     startScreen.style.display = 'none'
     livesText.innerText = `you only have ${lives} tries, so be careful!`
     instructionsText.innerText = `guess the number ranging from 0 to 500.`
-    console.log(number)
 })
 
 //array of guessed numbers to let player know if repeat guesses
@@ -78,9 +75,6 @@ function randomNumberMed () {
 function randomNumberHard () {
     return Math.floor(Math.random() * 501);
 } 
-
-
-console.log(number)
 
 
 //function to check if a number is within a threshold
@@ -101,7 +95,6 @@ function checkGuess () {
         //player guess was correct
         endScreen.style.display = 'flex'
         endText.innerText = `you got it! the number was ${number}`
-        console.log(guess)
         playAgainBtn.style.display = 'flex'
         consecutiveLoss = 0
     } else if (Math.abs(guess - number) < 3 && guess > number) {
@@ -137,7 +130,6 @@ function checkGuessMed () {
         //player guess was correct
         endScreen.style.display = 'flex'
         endText.innerText = `you got it! the number was ${number}`
-        console.log(guess)
         playAgainBtn.style.display = 'flex'
         consecutiveLoss = 0
     } else if (Math.abs(guess - number) < 10 && guess > number) {
@@ -171,10 +163,16 @@ function checkGuessHard () {
         //player guess was correct
         endScreen.style.display = 'flex'
         endText.innerText = `you got it! the number was ${number}`
-        console.log(guess)
+        
         playAgainBtn.style.display = 'flex'
         consecutiveLoss = 0
-    } else if (Math.abs(guess - number) < 50 && guess > number) {
+    } else if (Math.abs(guess - number) <= 10 && guess > number) {
+        invalidGuess.innerText = 'your guess was close, but too high (within 10)! guess again with a slightly larger number 😎👍'
+        subtractLife()
+    } else if (Math.abs(guess - number) <= 10 && guess < number) {
+        invalidGuess.innerText = 'your guess was close, but too low (within 10)! guess again with a slightly smaller number 😎👍'
+        subtractLife()
+    }else if (Math.abs(guess - number) < 50 && guess > number) {
         //player guess was too high
         invalidGuess.innerText = 'your guess was too high, try again with a smaller number 😎👍' 
         subtractLife()
@@ -237,22 +235,18 @@ function consecutiveLosses () {
 guessSubmit.addEventListener('click', () => {
 
     if (difficulty === 'easy') {
-        console.log(`this many lives: ${lives}`)
 
         //gets player guess and converts it to a number 
         let guessInput = document.querySelector('#guessInput').value
         let guess = parseInt(guessInput, 10);
             
         previousGuesses.push(guess)
-        previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`
-        console.log(`previous guesses: ${previousGuesses}`)
-        
+        previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`   
     
         checkGuess()
         checkLives()
 
     } else if (difficulty === 'medium') {
-        console.log(`this many lives: ${lives}`)
 
         //gets player guess and converts it to a number 
         let guessInput = document.querySelector('#guessInput').value
@@ -260,23 +254,18 @@ guessSubmit.addEventListener('click', () => {
             
         previousGuesses.push(guess)
         previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`
-        console.log(`previous guesses: ${previousGuesses}`)
-        
     
         checkGuessMed()
         checkLives()
 
     } else if (difficulty === 'hard') {
-        console.log(`this many lives: ${lives}`)
 
         //gets player guess and converts it to a number 
         let guessInput = document.querySelector('#guessInput').value
         let guess = parseInt(guessInput, 10);
             
         previousGuesses.push(guess)
-        previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`
-        console.log(`previous guesses: ${previousGuesses}`)
-        
+        previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`     
     
         checkGuessHard()
         checkLives()
@@ -291,7 +280,6 @@ playAgainBtn.addEventListener('click', () => {
     inputBar.value = ''
     playAgainBtn.style.display = 'none'
     invalidGuess.innerText = 'Enter your guess below'
-    console.log(`this many losses in a row: ${consecutiveLoss}`)
     previousGuesses = []
     previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`  
 
