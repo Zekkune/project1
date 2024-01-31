@@ -32,16 +32,6 @@ h2, h3 {
 
 }
 
-#livesText {
-    display: flex;
-    align-self: flex-start;
-    justify-self: flex-end;
-    position: relative;
-    margin: 10px 0 0 10px;
-    color: #0A5C36;
-    opacity: 1;
-}
-
 p {
     display: flex; 
     align-self: flex-start;
@@ -147,7 +137,7 @@ span {
     background-color: #282828;
     font-family: 'Honk', system-ui;
     text-align: center;
-    display: none;
+    display: block;
     align-self: center;
     align-items: center;
     flex-direction: column;
@@ -187,6 +177,20 @@ span {
 #endText {
     border: none;
     
+}
+
+#livesText {
+    display: flex;
+    align-self: flex-start;
+    justify-self: flex-end;
+    position: relative;
+    margin: 2px 0 5px 10px;
+    color: #0A5C36;
+    opacity: 1;
+}
+
+#livesNum {
+    font-size: 20px;
 }
 
 
