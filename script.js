@@ -30,7 +30,13 @@ livesText.innerText = 'Lives: ❌ ❌ ❌'
 function randomNumber () {
     return Math.floor(Math.random() * 11);
 } 
+
+function randomNumberMed () {
+    return Math.floor(Math.random() * 101);
+} 
+
 let number = randomNumber()
+let medNumber = randomNumberMed() 
 console.log(number)
 
 //checks the guess value and displays a hint
@@ -49,7 +55,46 @@ function checkGuess () {
         console.log(guess)
         playAgainBtn.style.display = 'flex'
         consecutiveLoss = 0
-    } else if (guess > number && guess - 1 === number || guess - 2 === number ) {
+    } else if (threshold(guess, number, 2) && guess > number) {
+        //player guess was too high
+        invalidGuess.innerText = 'your guess was too high, try again with a smaller number 😎👍'
+        subtractLife()
+    } else if (threshold(guess, number, 2) && guess < number) {
+        //player guess was too low
+        invalidGuess.innerText = 'your guess was too low, guess again with a larger number 😎👍'
+        subtractLife()
+    } else if (guess - 3 >= number) {
+        //player guess was way too high
+        invalidGuess.innerText = 'your guess was way too high! try again with a much smaller number 😎👍'
+        subtractLife()
+    } else if (guess + 3 <= number) {
+        //player guess was too low
+        invalidGuess.innerText = 'your guess was way too low! guess again with a much larger number 😎👍'
+        subtractLife()
+    } 
+}
+
+//function to check if a number is within a threshold
+function threshold (guess, target, threshold = 20) {
+    return Math.abs(guess - target <= threshold)
+}
+
+function checkGuessMed () {
+
+    let guessInput = document.querySelector('#guessInput').value
+    let guess = parseInt(guessInput, 10);
+    
+    if (guess > 100 || guess < 0) {
+        //number is too big or small
+        invalidGuess.innerText = 'pick a number from 0 to 100!'
+     } else if (guess === number) {
+        //player guess was correct
+        endScreen.style.display = 'flex'
+        endText.innerText = `you got it! the number was ${number}`
+        console.log(guess)
+        playAgainBtn.style.display = 'flex'
+        consecutiveLoss = 0
+    } else if (guess > number && guess - number < 3 || guess - 2 === number ) {
         //player guess was too high
         invalidGuess.innerText = 'your guess was too high, try again with a smaller number 😎👍'
         subtractLife()

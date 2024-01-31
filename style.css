@@ -147,7 +147,7 @@ span {
     background-color: #282828;
     font-family: 'Honk', system-ui;
     text-align: center;
-    display: block;
+    display: none;
     align-self: center;
     align-items: center;
     flex-direction: column;
