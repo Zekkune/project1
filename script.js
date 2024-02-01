@@ -13,6 +13,7 @@ const inputBar = document.querySelector('#guessInput')
 const easyButton = document.querySelector('#easyButton')
 const medButton = document.querySelector('#medButton')
 const hardButton = document.querySelector('#hardButton')
+const extremeButton = document.querySelector('#extremeButton')
 const instructionsText = document.querySelector('#instructionsText')
 
 
@@ -44,7 +45,7 @@ easyButton.addEventListener('click', () => {
 medButton.addEventListener('click', () => {
     difficulty = 'medium'
     number = randomNumberMed()
-    lives = 10
+    lives = 5
     showLives()
     startScreen.style.display = 'none'
     livesText.innerText = `you only have ${lives} tries, so be careful!`
@@ -53,11 +54,20 @@ medButton.addEventListener('click', () => {
 hardButton.addEventListener('click', () => {
     difficulty = 'hard'
     number = randomNumberHard()
-    lives = 20
+    lives = 10
     showLives()
     startScreen.style.display = 'none'
     livesText.innerText = `you only have ${lives} tries, so be careful!`
     instructionsText.innerText = `guess the number ranging from 0 to 500.`
+})
+extremeButton.addEventListener('click', () => {
+    difficulty = 'extreme'
+    number = randomNumberExtreme()
+    lives = 9
+    showLives()
+    startScreen.style.display = 'none'
+    livesText.innerText = `only ${lives} lives in this one, can you guess the correct number using cat-like senses?`
+    instructionsText.innerText = `guess the number ranging from 0 to 500. Including decimals!`
 })
 
 //array of guessed numbers to let player know if repeat guesses
@@ -75,12 +85,11 @@ function randomNumberMed () {
 function randomNumberHard () {
     return Math.floor(Math.random() * 501);
 } 
+function randomNumberExtreme() {
+    let randomDecimal = Math.random() * 501;
+    return Number(randomDecimal.toFixed(1)); // Limiting to 10 decimal places
+}
 
-
-//function to check if a number is within a threshold
-// function threshold (guess, target, threshold = 20) {
-//     return Math.abs(guess - target >= threshold)
-// }
 
 //checks the guess value and displays a hint
 function checkGuess () {
@@ -155,6 +164,46 @@ function checkGuessHard () {
 
     let guessInput = document.querySelector('#guessInput').value
     let guess = parseInt(guessInput, 10);
+    
+    if (guess > 500 || guess < 0) {
+        //number is too big or small
+        invalidGuess.innerText = 'pick a number from 0 to 500!'
+     } else if (guess === number) {
+        //player guess was correct
+        endScreen.style.display = 'flex'
+        endText.innerText = `you got it! the number was ${number}`
+        
+        playAgainBtn.style.display = 'flex'
+        consecutiveLoss = 0
+    } else if (Math.abs(guess - number) <= 10 && guess > number) {
+        invalidGuess.innerText = 'your guess was close, but too high (within 10)! guess again with a slightly larger number 😎👍'
+        subtractLife()
+    } else if (Math.abs(guess - number) <= 10 && guess < number) {
+        invalidGuess.innerText = 'your guess was close, but too low (within 10)! guess again with a slightly smaller number 😎👍'
+        subtractLife()
+    }else if (Math.abs(guess - number) < 50 && guess > number) {
+        //player guess was too high
+        invalidGuess.innerText = 'your guess was too high, try again with a smaller number 😎👍' 
+        subtractLife()
+    } else if (Math.abs(guess - number) < 50 && guess < number) {
+        //player guess was too low
+        invalidGuess.innerText = 'your guess was too low, guess again with a larger number 😎👍'
+        subtractLife()
+    } else if (Math.abs(guess - number) >= 50 && guess > number) {
+        //player guess was way too high
+        invalidGuess.innerText = 'your guess was way too high (50 or more away)! try again with a much smaller number 😎👍'
+        subtractLife()
+    } else if (Math.abs(guess - number) >= 50 && guess < number) {
+        //player guess was too low
+        invalidGuess.innerText = 'your guess was way too low (50 or more away)! guess again with a much larger number 😎👍'
+        subtractLife()
+    } 
+}
+
+function checkGuessExtreme () {
+
+    let guessInput = document.querySelector('#guessInput').value
+    let guess = parseFloat(guessInput);
     
     if (guess > 500 || guess < 0) {
         //number is too big or small
@@ -268,11 +317,20 @@ guessSubmit.addEventListener('click', () => {
         previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`     
     
         checkGuessHard()
-        checkLives()
+        checkLives() 
+    } else if (difficulty === 'extreme') {
 
-
-
-}})
+        //gets player guess and converts it to a number 
+        let guessInput = document.querySelector('#guessInput').value
+        let guess = parseFloat(guessInput);
+            
+        previousGuesses.push(guess)
+        previousGuessesText.innerText = `you guessed ${previousGuesses.join(', ')}`     
+    
+        checkGuessExtreme()
+        checkLives() 
+    }
+})
 
 playAgainBtn.addEventListener('click', () => {
     endScreen.style.display = 'none'
