@@ -151,7 +151,7 @@ span {
     border: none;
 }
 
-#easyButton, #medButton, #hardButton {
+#easyButton, #medButton, #hardButton , #extremeButton{
     height: 40px;
     width: 30%;
     background-color: hotpink;
@@ -162,6 +162,11 @@ span {
     font-size: 2rem;
     text-align: center;
 
+}
+
+#extremeButton {
+    margin-top: 5px;
+    font-size: 1.8rem;
 }
 
 #endScreen {
