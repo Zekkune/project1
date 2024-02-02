@@ -6,7 +6,7 @@ this project will be a simple number guessing game made with HTML, CSS, and vani
 <img src="NGG.png">
 
 ## Game Details
-the game will be a simple number guessing ame with multiple difficulties. the player will need to guess a number the computer randomly chooses with various ranges depending on the difficulty.
+the game will be a simple number guessing game with multiple difficulties. the player will need to guess a number the computer randomly chooses with various ranges depending on the difficulty.
 
 ### Start Screen
 <img src="startscreen.jpeg">
